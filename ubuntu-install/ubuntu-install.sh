@@ -61,6 +61,25 @@ wget -O code.deb https://go.microsoft.com/fwlink/?LinkID=760868
 $priv dpkg -i code.deb
 rm -f code.deb
 
+# go lang
+curl -L -o /tmp/go1.15.3.linux-amd64.tar.gz https://golang.org/dl/go1.15.3.linux-amd64.tar.gz
+$priv tar -C /usr/local -xzf /tmp/go1.15.3.linux-amd64.tar.gz
+$priv echo "export PATH=$PATH:/usr/local/go/bin" >> $HOME/.profile
+source $HOME/.profile
+go version
+rm -rf /tmp/go1.15.3.linux-amd64.tar.gz
+
+# powerline-go
+go get -u github.com/justjanne/powerline-go
+
+# pwsh
+curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.0.3/powershell-7.0.3-linux-x64.tar.gz
+$priv mkdir -p /opt/microsoft/powershell/7
+$priv tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
+$priv chmod +x /opt/microsoft/powershell/7/pwsh
+$priv ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+rm -rf /tmp/powershell.tar.gz
+
 # youtube-dl
 $priv curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
 $priv chmod a+rx /usr/local/bin/youtube-dl
