@@ -4,7 +4,10 @@ git-core
 build-essential
 unzip
 unrar
-vim 
+vim
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting 
 pylint
 python-pip-whl
 gnome-tweaks
@@ -16,3 +19,4 @@ libvirt-clients
 libvirt-daemon-system 
 bridge-utils
 deluge
+node-typescript

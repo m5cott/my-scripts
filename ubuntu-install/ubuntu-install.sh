@@ -32,6 +32,12 @@ do
     install "$line"
 done <"$file"
 
+# Basic Firewall setup with ufw
+$priv ufw default deny incoming
+$priv ufw default allow outgoing
+$priv ufw logging on
+$priv ufw enable
+
 # Adding VM groups to current user
 $priv usermod -aG kvm $USER
 $priv usermod -aG libvirt $USER
@@ -44,6 +50,16 @@ $priv snap connect qemu-virgil:audio-record
 $priv snap connect qemu-virgil:kvm
 $priv snap connect qemu-virgil:raw-usb
 $priv snap connect qemu-virgil:removable-media
+
+# Git config
+git config --global user.name m5cott
+git config --global user.email mcscottbsn@outlook.com
+git config --global color.ui auto
+git config --global core.editor "vim"
+
+# Setting up home dir and dotfiles
+cd Downloads && git clone https://github.com/m5cott/my-configs
+cd my-configs && ./setup.sh
 
 # Quickemu
 git clone https://github.com/wimpysworld/quickemu.git
